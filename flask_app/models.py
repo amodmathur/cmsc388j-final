@@ -6,7 +6,7 @@ from . import db, login_manager
 from . import config
 from .utils import current_time
 import base64
-import PIL
+#import PIL
 from flask_login import (
     LoginManager,
     current_user,

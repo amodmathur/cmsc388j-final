@@ -1,2 +1,2 @@
-SECRET_KEY = b'\x020;yr\x91\x11\xbe"\x9d\xc1\x14\x91\xadf\xec'
-MONGODB_HOST = "mongodb://localhost:27017/project_5_soln"
+SECRET_KEY = b'<\xef\x94\xa7\xcad%\x17\x19\x1a\x8f\xa5\xa5\xe6F\xf4'
+MONGODB_HOST = "mongodb://localhost:27017/final-proj"
