@@ -29,8 +29,7 @@ import base64
 from . import bcrypt, movie_client
 from .forms import (
     SearchForm,
-    PropertySubmitForm,
-    PropertyReviewForm,
+    MovieReviewForm,
     RegistrationForm,
     LoginForm,
     UpdateUsernameForm,
@@ -74,7 +73,7 @@ def movie_detail(movie_id):
         flash(str(e))
         return redirect(url_for("main.login"))
 
-    form = PropertyReviewForm()
+    form = MovieReviewForm()
     if form.validate_on_submit() and current_user.is_authenticated:
         review = Review(
             commenter=current_user._get_current_object(),

@@ -1,21 +1,53 @@
-# 3rd-party packages
 from flask import Flask, render_template, request, redirect, url_for
 from flask_mongoengine import MongoEngine
-from flask_login import LoginManager, current_user, login_user, logout_user, login_required
+from flask_login import (
+    LoginManager,
+    current_user,
+    login_user,
+    logout_user,
+    login_required,
+)
 from flask_bcrypt import Bcrypt
 from werkzeug.utils import secure_filename
 
 # stdlib
-import os
 from datetime import datetime
+import os
 
-app = Flask(__name__)
-app.config['MONGODB_HOST'] = 'mongodb://localhost:27017/final-project'
-app.config['SECRET_KEY'] = b'\xfe\xff\x11\x9cT\x11\x82)\x07\x8c\xa8\x1f\x03_\xb9\x92'
+# local
+from .client import MovieClient
 
-db = MongoEngine(app)
-login_manager = LoginManager(app)
-login_manager.login_view = 'login'
-bcrypt = Bcrypt(app)
 
-from . import routes
+db = MongoEngine()
+login_manager = LoginManager()
+bcrypt = Bcrypt()
+movie_client = MovieClient(os.environ.get("OMDB_API_KEY"))
+
+#from .routes import main
+from .movies.routes import movies as movies
+from .users.routes import users as users
+
+
+def page_not_found(e):
+    return render_template("404.html"), 404
+
+
+def create_app(test_config=None):
+    app = Flask(__name__)
+
+    app.config.from_pyfile("config.py", silent=False)
+    if test_config is not None:
+        app.config.update(test_config)
+
+    db.init_app(app)
+    login_manager.init_app(app)
+    bcrypt.init_app(app)
+
+    #app.register_blueprint(main)
+    app.register_blueprint(users)
+    app.register_blueprint(movies)
+    app.register_error_handler(404, page_not_found)
+
+    login_manager.login_view = "users.login"
+
+    return app
