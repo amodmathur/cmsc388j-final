@@ -25,12 +25,14 @@ bcrypt = Bcrypt()
 movie_client = MovieClient(os.environ.get("OMDB_API_KEY"))
 
 #from .routes import main
-from .movies.routes import movies as movies
+#from .movies.routes import movies as movies
 from .users.routes import users as users
+from .properties.routes import properties as properties
 
 
 def page_not_found(e):
     return render_template("404.html"), 404
+
 
 
 def create_app(test_config=None):
@@ -46,7 +48,8 @@ def create_app(test_config=None):
 
     #app.register_blueprint(main)
     app.register_blueprint(users)
-    app.register_blueprint(movies)
+    #app.register_blueprint(movies)
+    app.register_blueprint(properties)
     app.register_error_handler(404, page_not_found)
 
     login_manager.login_view = "users.login"

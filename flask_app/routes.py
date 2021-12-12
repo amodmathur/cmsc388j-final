@@ -19,6 +19,7 @@ from flask_login import (
 )
 from flask_bcrypt import Bcrypt
 from werkzeug.utils import secure_filename
+from .models import Property
 
 # stdlib
 from datetime import datetime
@@ -49,7 +50,7 @@ def index():
     form = SearchForm()
 
     if form.validate_on_submit():
-        return redirect(url_for("main.query_results", query=form.search_query.data))
+        return redirect(url_for("main.property_results", query=form.search_query.data))
 
     return render_template("index.html", form=form)
 
@@ -57,7 +58,10 @@ def index():
 @main.route("/search-results/<query>", methods=["GET"])
 def query_results(query):
     try:
-        results = movie_client.search(query)
+        #results = movie_client.search(query)
+        # query mongo and return properties that are the search query
+        results = Property.objects(city=query)
+
     except ValueError as e:
         flash(str(e))
         return redirect(url_for("main.index"))

@@ -2,8 +2,13 @@
 {% block content %}
 
 <div class="row">
-    <div>
+    <!-- ADD CODE FOR BUTTONS TO LIST PROPERTIES
+    <button type="button" href="{{ url_for('users.account') }}" class="btn btn-primary" style="height: 50px;">List A Property</button>-->
+    <a class="btn btn-primary" href="{{ url_for('properties.list_property') }}" role="button" style="height: 45px;">List A Property</a>
+    <div style="margin-top: 7rem;">
         <h2>Use this search bar to find your dream vacation spot!</h2>
+        <p>Please enter the location you wish to query by city name.</p>
+
     </div>
     <div class="col">
         <form action="/" class="form-inline my-2 my-lg-0" method="POST">
@@ -20,11 +25,10 @@
             <div style="display: flex;">
                 <style>
                     .form-inline .form-control { 
-                        height: 40px; width:1000px; margin-top: 4rem;
+                        height: 40px; width:1000px; margin-top: 2rem;
                     }
                     .btn-outline-success {
-                        height: 40px;
-                        margin-top: 4rem;
+                        height: 40px; margin-top: 2rem;
                     }
                 </style>
                 {{ form.csrf_token }}

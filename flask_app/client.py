@@ -32,19 +32,6 @@ class MovieClient(object):
         if the search failed.
         Only use this method if the user is using the search bar on the website.
         """
-        search_string = "+".join(search_string.split())
-        page = 1
-
-        search_url = f"s={search_string}&page={page}"
-
-        resp = self.sess.get(self.base_url + search_url)
-
-        if resp.status_code != 200:
-            raise ValueError(
-                "Search request failed; make sure your API key is correct and authorized"
-            )
-
-        data = resp.json()
 
         if data["Response"] == "False":
             raise ValueError(f'[ERROR]: Error retrieving results: \'{data["Error"]}\' ')

@@ -1,0 +1,44 @@
+{% extends "header.html" %}
+{% block content %}
+
+
+
+{% if current_user.is_authenticated %}
+{# Movie review submission form #}
+<div class="row">
+  <div class="col">
+    <form method="POST" action="">
+      {{ form.csrf_token }}
+      <div class="form-group">
+        {{ form.city.label }}
+        {{ form.city(class="form-control") }}
+
+        {{ form.description.label }}
+        {{ form.description(class="form-control") }}
+
+        {{ form.name.label }}
+        {{ form.name(class="form-control") }}
+
+        {{ form.price.label }}
+        {{ form.price(class="form-control") }}
+
+        {{ form.image.label }}
+        {{ form.image(class="form-control") }}
+
+
+
+        {% if form.city.errors %}
+        <div class="alert alert-warning" role="alert">
+          {% for error in form.text.errors %}
+          <span>{{ error }}</span>
+          {% endfor %}
+        </div>
+        {% endif %}
+
+      </div>
+      {{ form.submit() }}
+    </form>
+  </div>
+</div>
+{% endif %}
+{% endblock content %}

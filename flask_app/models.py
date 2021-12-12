@@ -5,6 +5,8 @@ from datetime import datetime
 from . import db, login_manager
 from . import config
 from .utils import current_time
+from flask_wtf.file import FileField, FileRequired, FileAllowed
+from wtforms import StringField, IntegerField, SubmitField, TextAreaField, PasswordField
 import base64
 #import PIL
 from flask_login import (
@@ -37,3 +39,12 @@ class Review(db.Document):
     date = db.StringField(required=True)
     imdb_id = db.StringField(required=True, min_length=9, max_length=9)
     movie_title = db.StringField(required=True, min_length=1, max_length=100)
+
+
+class Property(db.Document):
+    owner = db.ReferenceField(User, required=True)
+    city = db.StringField(required=True, min_length=1, max_length=50)
+    description = db.StringField(required=True, min_length=1, max_length=500)
+    image = db.FileField(required=True)
+    price = db.IntField(required=True)
+    name = db.StringField(required=True, min_length=1, max_length=50)

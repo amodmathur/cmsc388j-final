@@ -5,13 +5,18 @@
 {% endif %}
 
 <div class="container-fluid">
-    {% for result in results %}
-    <div class="media">
-        <img src="{{ result.poster_url }}" class="mr-3 movie" alt="missing">
-        <div class="media-body">
-        <h5 class="mt-0"><a href="{{ url_for('movies.movie_detail', movie_id=result.imdb_id) }}">{{ result.title }}</a> ({{ result.year }})</h5>
+    <h3 style="margin-bottom: 3rem; margin-top: 3rem;">Properties matching your search...</h3>
+    {% for property in results %}
+
+    <div class="card" style="width: 18rem;">
+        <img class="card-img-top" src="..." alt="Card image cap">
+        <div class="card-body">
+          <h5 class="card-title">Property in {{property.city}}</h5>
+          <p class="card-text"><strong>City: </strong> {{property.city}} <br> <strong>Description: </strong>{{property.description}}</p>
+          <a href="#" class="btn btn-primary">Reserve Now</a>
         </div>
     </div>
+
     {% endfor %}
 </div>
 

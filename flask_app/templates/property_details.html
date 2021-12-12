@@ -1,0 +1,28 @@
+{% extends "header.html" %}
+{% block content %}
+<div class="row">
+    <div class="col">
+        <h2 style="margin-bottom: 2rem;">{{ username }}'s Properties</h2>
+    </div>
+</div>
+<div class="row">
+    <div class="col">
+        <h1> Properties <small class="float-right">{{ properties.count() }} properties</small></h1>
+        <ul class="media-list">
+            {% for prop in properties %}
+            <li class="media review-item">
+                <div class="media-body">
+                    <strong>City: <a href="{{ url_for('properties.list_property', city=prop.city) }}">
+                            {{ prop.city }}
+                        </a>
+                    </strong>
+                    <p>
+                        <strong>Description: </strong>{{ prop.description }}
+                    </p>
+                </div>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+{% endblock %}
