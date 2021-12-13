@@ -34,10 +34,10 @@ class PropertyForm(FlaskForm):
     city = StringField("City", validators=[InputRequired()])
     description = StringField("Description", validators=[InputRequired()])
     image = FileField('Property Picture', validators=[
-        FileRequired(), 
-        FileAllowed(['jpg', 'png'], 'Images Only!')
+        #FileRequired()
+        #FileAllowed(['jpg', 'png'], 'Images Only!')
     ])
-    price = IntegerField('Price')
+    price = IntegerField('Price',validators=[InputRequired()])
     name = StringField("Name", validators=[InputRequired(), Length(min=1, max=50)])
 
     submit = SubmitField("Submit Property")

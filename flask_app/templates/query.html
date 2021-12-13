@@ -6,13 +6,20 @@
 
 <div class="container-fluid">
     <h3 style="margin-bottom: 3rem; margin-top: 3rem;">Properties matching your search...</h3>
-    {% for property in results %}
+    {% for i in range(0,len) %}
 
     <div class="card" style="width: 18rem;">
-        <img class="card-img-top" src="..." alt="Card image cap">
+        <img class="pic" src="data:image/png;base64,{{images[i]}}" alt="image!!">
         <div class="card-body">
-          <h5 class="card-title">Property in {{property.city}}</h5>
-          <p class="card-text"><strong>City: </strong> {{property.city}} <br> <strong>Description: </strong>{{property.description}}</p>
+          <h5 class="card-title">{{results[i].name}}</h5>
+          <p class="card-text">
+              <strong>City: </strong> {{results[i].city}} 
+              <br> 
+              <strong>Description: </strong>{{results[i].description}}
+              <br>
+              <strong>Price: $</strong>{{results[i].price}}
+        </p>
+    
           <a href="#" class="btn btn-primary">Reserve Now</a>
         </div>
     </div>

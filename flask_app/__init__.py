@@ -42,6 +42,8 @@ def create_app(test_config=None):
     if test_config is not None:
         app.config.update(test_config)
 
+    app.config["MONGODB_HOST"] = os.getenv("MONGODB_HOST")
+
     db.init_app(app)
     login_manager.init_app(app)
     bcrypt.init_app(app)
@@ -53,5 +55,6 @@ def create_app(test_config=None):
     app.register_error_handler(404, page_not_found)
 
     login_manager.login_view = "users.login"
+    
 
     return app

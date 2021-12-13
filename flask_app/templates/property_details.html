@@ -9,16 +9,23 @@
     <div class="col">
         <h1> Properties <small class="float-right">{{ properties.count() }} properties</small></h1>
         <ul class="media-list">
-            {% for prop in properties %}
+            {% for i in range(0, len) %}
             <li class="media review-item">
                 <div class="media-body">
-                    <strong>City: <a href="{{ url_for('properties.list_property', city=prop.city) }}">
-                            {{ prop.city }}
-                        </a>
-                    </strong>
                     <p>
-                        <strong>Description: </strong>{{ prop.description }}
+                        <strong>{{properties[i].name}}</strong>
                     </p>
+                    <img class="propic" src="data:image/png;base64,{{images[i]}}" alt="image!!">
+                    <p>
+                        <strong>City:</strong> {{properties[i].city}}
+                    </p>
+                    <p>
+                        <strong>Price: $</strong>{{ properties[i].price }}
+                    </p>
+                    <p>
+                        <strong>Description: </strong>{{ properties[i].description }}
+                    </p>
+
                 </div>
             </li>
             {% endfor %}

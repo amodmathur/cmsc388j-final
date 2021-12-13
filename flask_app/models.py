@@ -41,10 +41,10 @@ class Review(db.Document):
     movie_title = db.StringField(required=True, min_length=1, max_length=100)
 
 
-class Property(db.Document):
+class Property(db.Document,UserMixin):
     owner = db.ReferenceField(User, required=True)
     city = db.StringField(required=True, min_length=1, max_length=50)
     description = db.StringField(required=True, min_length=1, max_length=500)
-    image = db.FileField(required=True)
+    image = db.FileField()
     price = db.IntField(required=True)
     name = db.StringField(required=True, min_length=1, max_length=50)

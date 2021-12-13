@@ -7,7 +7,7 @@
 {# Movie review submission form #}
 <div class="row">
   <div class="col">
-    <form method="POST" action="">
+    <form method="POST" action="" enctype="multipart/form-data">
       {{ form.csrf_token }}
       <div class="form-group">
         {{ form.city.label }}
@@ -22,10 +22,20 @@
         {{ form.price.label }}
         {{ form.price(class="form-control") }}
 
-        {{ form.image.label }}
-        {{ form.image(class="form-control") }}
+        <!-- {{ form.image.label }}
+        {{ form.image(class="form-control") }} -->
 
+        {{ form.image.label(class="form-control-label") }}
+        {{ form.image(class="form-control form-control-lg") }}
 
+        {% if form.image.errors %}
+                <div class="alert alert-warning" role="alert">
+                    {% for error in form.image.errors %}
+                    <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+                {% endif %}
+        <!-- <img src="data:image/png;base64,{{image}}" alt="image"> -->
 
         {% if form.city.errors %}
         <div class="alert alert-warning" role="alert">
