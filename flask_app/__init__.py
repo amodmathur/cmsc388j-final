@@ -35,7 +35,7 @@ def page_not_found(e):
 
 
 
-def create_app(test_config=None):
+def create_app(test_config=None, obj_test=None):
     app = Flask(__name__)
     app.config["MONGODB_HOST"] = os.getenv("MONGODB_HOST")
 
